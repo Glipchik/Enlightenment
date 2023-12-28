@@ -2,15 +2,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34407.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.AppHost", "EnlightenmentApp.AppHost\EnlightenmentApp.AppHost.csproj", "{7693B4F5-789B-4341-94EA-0A6902D515A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.AppHost", "EnlightenmentApp.AppHost\EnlightenmentApp.AppHost.csproj", "{7693B4F5-789B-4341-94EA-0A6902D515A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.ServiceDefaults", "EnlightenmentApp.ServiceDefaults\EnlightenmentApp.ServiceDefaults.csproj", "{244DC31F-D99D-48C4-8409-0B0DDE74B721}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "Client\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.BLL", "Client\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{F6AB499E-4837-44D8-AE41-8779EA2694C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "Client\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{F6AB499E-4837-44D8-AE41-8779EA2694C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.DAL", "Client\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{47F511C6-7664-45AC-9563-65EAE13EDE2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "Client\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{47F511C6-7664-45AC-9563-65EAE13EDE2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.API.Tests", "Tests\EnlightenmentApp.API.Tests\EnlightenmentApp.API.Tests.csproj", "{B3025399-0671-4BE6-8339-68AFBC45E1C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.BLL.Tests", "Tests\EnlightenmentApp.BLL.Tests\EnlightenmentApp.BLL.Tests.csproj", "{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.DAL.Tests", "EnlightenmentApp.DAL.Tests\EnlightenmentApp.DAL.Tests.csproj", "{003B87B3-7EAC-47AF-A446-17FD79A20DCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89CC68F3-9261-4E90-AE5E-9C51E6AB7449}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +46,26 @@ Global
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3025399-0671-4BE6-8339-68AFBC45E1C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3025399-0671-4BE6-8339-68AFBC45E1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3025399-0671-4BE6-8339-68AFBC45E1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3025399-0671-4BE6-8339-68AFBC45E1C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003B87B3-7EAC-47AF-A446-17FD79A20DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003B87B3-7EAC-47AF-A446-17FD79A20DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003B87B3-7EAC-47AF-A446-17FD79A20DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003B87B3-7EAC-47AF-A446-17FD79A20DCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3025399-0671-4BE6-8339-68AFBC45E1C1} = {89CC68F3-9261-4E90-AE5E-9C51E6AB7449}
+		{88BE0D2E-5462-4B6A-94F8-43EA9FFD8A11} = {89CC68F3-9261-4E90-AE5E-9C51E6AB7449}
+		{003B87B3-7EAC-47AF-A446-17FD79A20DCF} = {89CC68F3-9261-4E90-AE5E-9C51E6AB7449}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E98FBA68-D9C3-4D36-AD4A-62A6AF5D3D28}
