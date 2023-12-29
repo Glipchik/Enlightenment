@@ -1,16 +1,9 @@
-﻿namespace EnlightenmentApp.DAL.Entities
+﻿using EnlightenmentApp.DAL.Enums;
+
+namespace EnlightenmentApp.DAL.Entities
 {
     public class TagEntity
     {
-        public enum TagType
-        {
-            Tier,
-            Difficulty,
-            SectionsCount,
-            ReturnAmount,
-            Timespan,
-            Custom
-        }
         #nullable disable
         public int Id { get; set; }
         public TagType Type { get; set; }
