@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EnlightenmentApp.DAL.DI;
 
 namespace EnlightenmentApp.BLL.DI
 {
@@ -7,7 +8,7 @@ namespace EnlightenmentApp.BLL.DI
     {
         public static void AddBusinessLogic(this IServiceCollection services, IConfiguration configuration)
         {
-            DAL.DI.DataAccessServices.AddDataRepository(services, configuration);
+            services.RegisterDALServices(configuration);
         }
     }
 }

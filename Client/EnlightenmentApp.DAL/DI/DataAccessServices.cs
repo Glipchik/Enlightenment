@@ -7,7 +7,7 @@ namespace EnlightenmentApp.DAL.DI
 {
     public static class DataAccessServices
     {
-        public static void AddDataRepository(IServiceCollection services, IConfiguration configuration)
+        public static void RegisterDALServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(op => op.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }

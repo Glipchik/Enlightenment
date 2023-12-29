@@ -5,10 +5,6 @@ namespace EnlightenmentApp.DAL.DataContext
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext()
-        {
-            Database.Migrate();
-        }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             if (Database.IsRelational())
@@ -22,6 +18,5 @@ namespace EnlightenmentApp.DAL.DataContext
         public DbSet<ModuleReviewEntity> ModuleReviews { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
         public DbSet<PathEntity> Paths { get; set; }
-
     }
 }
