@@ -12,6 +12,7 @@
         public ICollection<ModuleReviewEntity> Reviews { get; set; }
         public ICollection<TagEntity> Tags { get; set; }
         public string ImageSrc { get; set; }
+        public ICollection<PathEntity> Paths { get; }
         public ICollection<SectionEntity> Sections { get; set; }
         public bool IsCompleted { get; set; }
     }
