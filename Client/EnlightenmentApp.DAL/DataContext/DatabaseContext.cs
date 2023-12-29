@@ -5,10 +5,10 @@ namespace EnlightenmentApp.DAL.DataContext
 {
     public class DatabaseContext : DbContext
     {
-        //public DatabaseContext()
-        //{
-        //    Database.Migrate();
-        //}
+        public DatabaseContext()
+        {
+            Database.Migrate();
+        }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             if (Database.IsRelational())
