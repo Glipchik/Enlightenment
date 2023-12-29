@@ -14,7 +14,6 @@
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Entities\" />
-    <Folder Include="DI\" />
   </ItemGroup>
 
 </Project>
