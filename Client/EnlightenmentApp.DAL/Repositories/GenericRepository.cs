@@ -1,11 +1,11 @@
 ﻿using EnlightenmentApp.DAL.DataContext;
-using EnlightenmentApp.DAL.Interfaces.Entities;
+using EnlightenmentApp.DAL.Entities;
 using EnlightenmentApp.DAL.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnlightenmentApp.DAL.Repositories
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         protected DatabaseContext _context;
         protected DbSet<TEntity> _dbSet;

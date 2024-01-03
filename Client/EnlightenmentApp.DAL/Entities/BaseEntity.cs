@@ -1,9 +1,7 @@
-﻿using EnlightenmentApp.DAL.Interfaces.Entities;
-
-namespace EnlightenmentApp.DAL.Entities
+﻿namespace EnlightenmentApp.DAL.Entities
 {
-    public class BaseEntity : IEntity
+    public class BaseEntity
     {
-        public virtual int Id {  get; set; }
+        public int Id {  get; set; }
     }
 }

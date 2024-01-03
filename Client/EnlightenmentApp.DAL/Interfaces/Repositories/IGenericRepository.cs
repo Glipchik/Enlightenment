@@ -1,8 +1,8 @@
-﻿using EnlightenmentApp.DAL.Interfaces.Entities;
+﻿using EnlightenmentApp.DAL.Entities;
 
 namespace EnlightenmentApp.DAL.Interfaces.Repositories
 {
-    public interface IGenericRepository<TEntity> where TEntity : class, IEntity
+    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         public Task<IEnumerable<TEntity>> GetEntities(CancellationToken ct);
         public Task<TEntity> GetById(int id, CancellationToken ct);
