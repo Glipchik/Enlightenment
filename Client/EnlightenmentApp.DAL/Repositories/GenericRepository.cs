@@ -22,58 +22,39 @@ namespace EnlightenmentApp.DAL.Repositories
             return result;
         }
 
-        public virtual async Task<TEntity> GetById(int id, CancellationToken ct)
+        public virtual async Task<TEntity?> GetById(int id, CancellationToken ct)
         {
             var result = await _dbSet.FindAsync(id, ct);
-            if (result != null)
-            {
-                return result;
-            }
-
-            throw new KeyNotFoundException();
+            return result;
         }
 
         public virtual async Task<TEntity> Add(TEntity entity, CancellationToken ct)
         {
-            if (entity != null)
-            {
-                await _dbSet.AddAsync(entity, ct);
-                await _context.SaveChangesAsync(ct);
-                return entity;
-            }
-
-            throw new ArgumentNullException();
+            await _dbSet.AddAsync(entity, ct);
+            await _context.SaveChangesAsync(ct);
+            return entity;
         }
 
         public virtual async Task<TEntity> Update(TEntity entity, CancellationToken ct)
         {
-            if (await EntityExists(entity, ct))
-            {
-                var result = _context.Entry(entity);
-                result.State = EntityState.Modified;
-                await _context.SaveChangesAsync(ct);
-                return entity;
-            }
-
-            throw new DbUpdateConcurrencyException();
+            var result = _context.Entry(entity);
+            result.State = EntityState.Modified;
+            await _context.SaveChangesAsync(ct);
+            return entity;
         }
 
-        public virtual async Task<bool> Delete(int id, CancellationToken ct)
+        public virtual async Task<TEntity?> Delete(int id, CancellationToken ct)
         {
             var result = await _dbSet.FindAsync(id, ct);
-            if (result != null)
-            {
-                _dbSet.Remove(result);
-                await _context.SaveChangesAsync(ct);
-                return true;
-            }
-
-            throw new KeyNotFoundException();
+            _dbSet.Remove(result);
+            await _context.SaveChangesAsync(ct);
+            return result;
         }
 
         public virtual async Task<bool> EntityExists(TEntity entity, CancellationToken ct)
         {
-            return await _dbSet.AnyAsync(c => c.Id == entity.Id, ct);
+            var result = await _dbSet.AnyAsync(c => c.Id == entity.Id, ct);
+            return result;
         }
     }
 }
