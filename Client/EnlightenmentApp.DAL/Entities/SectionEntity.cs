@@ -1,11 +1,8 @@
-﻿using EnlightenmentApp.DAL.Interfaces.Entities;
-
-namespace EnlightenmentApp.DAL.Entities
+﻿namespace EnlightenmentApp.DAL.Entities
 {
-    public class SectionEntity : IEntity
+    public class SectionEntity : BaseEntity
     {
         #nullable disable
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<ChapterEntity> Chapters { get; set; }
         public int ModuleId { get; set; }

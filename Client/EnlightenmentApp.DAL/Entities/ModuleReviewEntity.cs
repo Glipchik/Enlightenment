@@ -1,11 +1,8 @@
-﻿using EnlightenmentApp.DAL.Interfaces.Entities;
-
-namespace EnlightenmentApp.DAL.Entities
+﻿namespace EnlightenmentApp.DAL.Entities
 {
-    public class ModuleReviewEntity : IEntity
+    public class ModuleReviewEntity : BaseEntity
     {
         #nullable disable
-        public int Id { get; set; }
         public string UserName { get; set; }
         public int Rating { get; set; }
         public string ReviewText { get; set; }

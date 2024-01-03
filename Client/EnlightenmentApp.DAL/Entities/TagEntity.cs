@@ -1,12 +1,10 @@
 ﻿using EnlightenmentApp.DAL.Enums;
-using EnlightenmentApp.DAL.Interfaces.Entities;
 
 namespace EnlightenmentApp.DAL.Entities
 {
-    public class TagEntity : IEntity
+    public class TagEntity : BaseEntity
     {
         #nullable disable
-        public int Id { get; set; }
         public TagType Type { get; set; }
         public string Value { get; set; }
         public string MetaData { get; set; }

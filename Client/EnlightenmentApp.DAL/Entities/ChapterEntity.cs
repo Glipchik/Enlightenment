@@ -1,11 +1,8 @@
-﻿using EnlightenmentApp.DAL.Interfaces.Entities;
-
-namespace EnlightenmentApp.DAL.Entities
+﻿namespace EnlightenmentApp.DAL.Entities
 {
-    public class ChapterEntity : IEntity
+    public class ChapterEntity : BaseEntity
     {
         #nullable disable
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public bool IsCompleted {  get; set; }
