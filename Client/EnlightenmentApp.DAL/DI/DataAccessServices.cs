@@ -1,5 +1,5 @@
 ﻿using EnlightenmentApp.DAL.DataContext;
-using EnlightenmentApp.DAL.Interfaces;
+using EnlightenmentApp.DAL.Interfaces.Repositories;
 using EnlightenmentApp.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -1,45 +1,79 @@
-﻿using EnlightenmentApp.DAL.Interfaces;
+﻿using EnlightenmentApp.DAL.DataContext;
+using EnlightenmentApp.DAL.Interfaces.Entities;
+using EnlightenmentApp.DAL.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnlightenmentApp.DAL.Repositories
 {
-    class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbContext _context;
-        private DbSet<TEntity> _dbSet;
-        public GenericRepository(DbContext context)
+        protected DatabaseContext _context;
+        protected DbSet<TEntity> _dbSet;
+
+        public GenericRepository(DatabaseContext context)
         {
             this._context = context;
             _dbSet = _context.Set<TEntity>();
         }
 
-        public async Task<IEnumerable<TEntity>> Get()
+        public virtual async Task<IEnumerable<TEntity>> GetEntities(CancellationToken ct)
         {
-            return await _dbSet.AsNoTracking().ToListAsync();
+            var result = await _dbSet.AsNoTracking().ToListAsync(ct);
+            return result;
         }
 
-        public async Task<TEntity?> GetById(int id)
+        public virtual async Task<TEntity> GetById(int id, CancellationToken ct)
         {
-            return await _dbSet.FindAsync(id);
+            var result = await _dbSet.FindAsync(id, ct);
+            if (result != null)
+            {
+                return result;
+            }
+
+            throw new KeyNotFoundException();
         }
 
-        public async Task<TEntity> Update(TEntity item)
+        public virtual async Task<TEntity> Add(TEntity entity, CancellationToken ct)
         {
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return item;
+            if (entity != null)
+            {
+                await _dbSet.AddAsync(entity, ct);
+                await _context.SaveChangesAsync(ct);
+                return entity;
+            }
+
+            throw new ArgumentNullException();
         }
 
-        public async Task Delete(TEntity item)
+        public virtual async Task<TEntity> Update(TEntity entity, CancellationToken ct)
         {
-            _dbSet.Remove(item);
-            await _context.SaveChangesAsync();
+            if (await EntityExists(entity, ct))
+            {
+                var result = _context.Entry(entity);
+                result.State = EntityState.Modified;
+                await _context.SaveChangesAsync(ct);
+                return entity;
+            }
+
+            throw new DbUpdateConcurrencyException();
         }
-        public async Task<TEntity> Add(TEntity item)
+
+        public virtual async Task<bool> Delete(int id, CancellationToken ct)
         {
-            _dbSet.Add(item);
-            await _context.SaveChangesAsync();
-            return item;
+            var result = await _dbSet.FindAsync(id, ct);
+            if (result != null)
+            {
+                _dbSet.Remove(result);
+                await _context.SaveChangesAsync(ct);
+                return true;
+            }
+
+            throw new KeyNotFoundException();
+        }
+
+        public virtual async Task<bool> EntityExists(TEntity entity, CancellationToken ct)
+        {
+            return await _dbSet.AnyAsync(c => c.Id == entity.Id, ct);
         }
     }
 }

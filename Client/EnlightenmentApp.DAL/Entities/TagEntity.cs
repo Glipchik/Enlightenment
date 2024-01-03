@@ -1,8 +1,9 @@
 ﻿using EnlightenmentApp.DAL.Enums;
+using EnlightenmentApp.DAL.Interfaces.Entities;
 
 namespace EnlightenmentApp.DAL.Entities
 {
-    public class TagEntity
+    public class TagEntity : IEntity
     {
         #nullable disable
         public int Id { get; set; }

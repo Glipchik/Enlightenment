@@ -1,6 +1,8 @@
-﻿namespace EnlightenmentApp.DAL.Entities
+﻿using EnlightenmentApp.DAL.Interfaces.Entities;
+
+namespace EnlightenmentApp.DAL.Entities
 {
-    public class PathEntity
+    public class PathEntity : IEntity
     {
         #nullable disable
         public int Id { get; set; }
