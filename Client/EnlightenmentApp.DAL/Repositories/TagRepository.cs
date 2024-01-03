@@ -1,7 +1,6 @@
 ﻿using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using EnlightenmentApp.DAL.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace EnlightenmentApp.DAL.Repositories
 {
@@ -9,7 +8,7 @@ namespace EnlightenmentApp.DAL.Repositories
     {
         public TagRepository(DatabaseContext dbContext) : base(dbContext)
         {
-            this._context = dbContext;
+
         }
     }
 }

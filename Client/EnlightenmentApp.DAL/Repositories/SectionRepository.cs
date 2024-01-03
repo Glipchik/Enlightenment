@@ -9,7 +9,7 @@ namespace EnlightenmentApp.DAL.Repositories
     {
         public SectionRepository(DatabaseContext dbContext) : base(dbContext)
         {
-            this._context = dbContext;
+
         }
 
         public override async Task<SectionEntity> GetById(int id, CancellationToken ct)

@@ -10,7 +10,7 @@ namespace EnlightenmentApp.DAL.Repositories
     {
         public ModuleRepository(DatabaseContext dbContext) : base(dbContext)
         {
-            this._context = dbContext;
+
         }
 
         public override async Task<ModuleEntity> GetById(int id, CancellationToken ct)

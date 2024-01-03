@@ -8,7 +8,7 @@ namespace EnlightenmentApp.DAL.Repositories
     {
         public ChapterRepository(DatabaseContext dbContext) : base(dbContext) 
         {
-            this._context = dbContext;
+
         }
     }
 }

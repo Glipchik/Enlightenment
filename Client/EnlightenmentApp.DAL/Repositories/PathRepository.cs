@@ -10,7 +10,7 @@ namespace EnlightenmentApp.DAL.Repositories
     {
         public PathRepository(DatabaseContext dbContext) : base(dbContext)
         {
-            this._context = dbContext;
+
         }
 
         public override async Task<PathEntity> Add(PathEntity pathEntity, CancellationToken ct)
