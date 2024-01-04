@@ -11,6 +11,7 @@ namespace EnlightenmentApp.BLL.DI
         public static void AddBusinessLogic(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterDALServices(configuration);
+            services.AddAutoMapper(typeof(Mapper.MappingProfile).Assembly);
             services.AddScoped<IChapterService, ChapterService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IModuleService, ModuleService>();

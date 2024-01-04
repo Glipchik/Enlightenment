@@ -26,15 +26,10 @@ namespace EnlightenmentApp.BLL.Services
             return result;
         }
 
-        public virtual async Task<TItem> GetById(int id, CancellationToken ct)
+        public virtual async Task<TItem?> GetById(int id, CancellationToken ct)
         {
             var result = _mapper.Map<TItem>(await _repository.GetById(id, ct));
-            if (result != null)
-            {
-                return result;
-            }
-
-            throw new KeyNotFoundException();
+            return result;
         }
 
         public virtual async Task<TItem> Add(TItem item, CancellationToken ct)
@@ -49,17 +44,17 @@ namespace EnlightenmentApp.BLL.Services
             throw new ArgumentNullException();
         }
 
-        public virtual async Task<TItem> Delete(int id, CancellationToken ct)
+        public virtual async Task<TItem?> Delete(int id, CancellationToken ct)
         {
+            TItem? result = null;
             var itemExists = await _repository.EntityExists(id, ct);
             if (itemExists)
             {
                 var entity = await _repository.Delete(id, ct);
-                var result = _mapper.Map<TItem>(entity);
-                return result;
+                result = _mapper.Map<TItem>(entity);
             }
 
-            throw new KeyNotFoundException();
+            return result;
         }
 
         public virtual async Task<TItem> Update(TItem item, CancellationToken ct)
