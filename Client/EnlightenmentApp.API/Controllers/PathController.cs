@@ -6,12 +6,12 @@ using Path = EnlightenmentApp.BLL.Entities.Path;
 
 namespace EnlightenmentApp.API.Controllers
 {
-    [Route("api/Paths")]
+    [Route("api/paths")]
     [ApiController]
     public class PathController : ControllerBase
     {
-        private IPathService _pathService;
-        private IMapper _mapper;
+        private readonly IPathService _pathService;
+        private readonly IMapper _mapper;
 
         public PathController(IPathService pathService, IMapper mapper)
         {

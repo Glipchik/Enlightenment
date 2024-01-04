@@ -1,4 +1,4 @@
-﻿namespace EnlightenmentApp.API.Enums
+﻿namespace EnlightenmentApp.Shared.Enums
 {
     public enum TagType
     {

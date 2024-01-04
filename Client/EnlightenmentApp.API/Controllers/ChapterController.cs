@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EnlightenmentApp.API.Controllers
 {
-    [Route("api/Chapters")]
+    [Route("api/chapters")]
     [ApiController]
     public class ChapterController : ControllerBase
     {
-        private IChapterService _chapterService;
-        private IMapper _mapper;
+        private readonly IChapterService _chapterService;
+        private readonly IMapper _mapper;
 
         public ChapterController(IChapterService chapterService, IMapper mapper)
         {

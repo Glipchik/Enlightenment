@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj" />
     <ProjectReference Include="..\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj" />
   </ItemGroup>
 

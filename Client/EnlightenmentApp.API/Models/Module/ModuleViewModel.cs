@@ -4,9 +4,10 @@ using EnlightenmentApp.API.Models.Tag;
 
 namespace EnlightenmentApp.API.Models.Module
 {
-    public class ModuleViewModel : BaseModel
+    public class ModuleViewModel
     {
         #nullable disable
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public float Rating { get; set; }

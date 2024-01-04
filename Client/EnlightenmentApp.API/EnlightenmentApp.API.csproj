@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\EnlightenmentApp.ServiceDefaults\EnlightenmentApp.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj" />
     <ProjectReference Include="..\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj" />
   </ItemGroup>
 

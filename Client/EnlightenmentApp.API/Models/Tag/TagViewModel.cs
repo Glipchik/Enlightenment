@@ -1,10 +1,11 @@
-﻿using EnlightenmentApp.API.Enums;
+﻿using EnlightenmentApp.Shared.Enums;
 
 namespace EnlightenmentApp.API.Models.Tag
 {
-    public class TagViewModel : BaseModel
+    public class TagViewModel
     {
         #nullable disable
+        public int Id { get; set; }
         public TagType Type { get; set; }
         public string Value { get; set; }
         public string MetaData { get; set; }

@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

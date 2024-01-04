@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EnlightenmentApp.API.Controllers
 {
-    [Route("api/ModuleReviews")]
+    [Route("api/module-reviews")]
     [ApiController]
     public class ModuleReviewController : ControllerBase
     {
-        private IModuleReviewService _moduleReviewService;
-        private IMapper _mapper;
+        private readonly IModuleReviewService _moduleReviewService;
+        private readonly IMapper _mapper;
 
         public ModuleReviewController(IModuleReviewService moduleReviewService, IMapper mapper)
         {

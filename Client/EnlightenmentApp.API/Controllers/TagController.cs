@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EnlightenmentApp.API.Controllers
 {
-    [Route("api/Tags")]
+    [Route("api/tags")]
     [ApiController]
     public class TagController : ControllerBase
     {
-        private ITagService _tagService;
-        private IMapper _mapper;
+        private readonly ITagService _tagService;
+        private readonly IMapper _mapper;
 
         public TagController(ITagService tagService, IMapper mapper)
         {
