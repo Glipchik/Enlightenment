@@ -12,7 +12,6 @@ namespace EnlightenmentApp.DAL.DataContext
                 Database.Migrate();
             }
         }
-        public DbSet<ChapterEntity> Chapters { get; set; }
         public DbSet<SectionEntity> Sections { get; set; }
         public DbSet<ModuleEntity> Modules { get; set; }
         public DbSet<ModuleReviewEntity> ModuleReviews { get; set; }

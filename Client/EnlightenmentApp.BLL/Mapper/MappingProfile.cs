@@ -9,9 +9,6 @@ namespace EnlightenmentApp.BLL.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Chapter, ChapterEntity>();
-            CreateMap<ChapterEntity, Chapter>();
-
             CreateMap<Section, SectionEntity>();
             CreateMap<SectionEntity, Section>();
 

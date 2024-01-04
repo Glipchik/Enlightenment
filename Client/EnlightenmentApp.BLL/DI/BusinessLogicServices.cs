@@ -12,7 +12,6 @@ namespace EnlightenmentApp.BLL.DI
         {
             services.RegisterDALServices(configuration);
             services.AddAutoMapper(typeof(Mapper.MappingProfile).Assembly);
-            services.AddScoped<IChapterService, ChapterService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IModuleService, ModuleService>();
             services.AddScoped<IPathService, PathService>();

@@ -12,7 +12,6 @@ namespace EnlightenmentApp.DAL.DI
         public static void RegisterDALServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(op => op.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IChapterRepository, ChapterRepository>();
             services.AddScoped<ISectionRepository, SectionRepository>();
             services.AddScoped<IModuleRepository, ModuleRepository>();
             services.AddScoped<IPathRepository, PathRepository>();

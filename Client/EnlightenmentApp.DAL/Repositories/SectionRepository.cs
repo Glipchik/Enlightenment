@@ -15,7 +15,6 @@ namespace EnlightenmentApp.DAL.Repositories
         public override async Task<SectionEntity?> GetById(int id, CancellationToken ct)
         {
             var section = await _context.Sections
-                .Include(s => s.Chapters)
                 .FirstOrDefaultAsync(s => s.Id == id, ct);
             return section;
         }

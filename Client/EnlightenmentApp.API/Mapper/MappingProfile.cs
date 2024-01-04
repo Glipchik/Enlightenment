@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EnlightenmentApp.API.Models.Chapter;
 using EnlightenmentApp.API.Models.Module;
 using EnlightenmentApp.API.Models.ModuleReview;
 using EnlightenmentApp.API.Models.Path;
@@ -14,9 +13,6 @@ namespace EnlightenmentApp.API.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Chapter, ChapterViewModel>();
-            CreateMap<ChapterViewModel, Chapter>();
-
             CreateMap<Section, SectionViewModel>();
             CreateMap<SectionViewModel, Section>();
 
