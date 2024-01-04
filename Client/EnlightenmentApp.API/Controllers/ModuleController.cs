@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using EnlightenmentApp.API.Models.Module;
-using EnlightenmentApp.API.Models.Module;
 using EnlightenmentApp.BLL.Entities;
 using EnlightenmentApp.BLL.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
