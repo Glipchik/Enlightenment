@@ -12,17 +12,12 @@ namespace EnlightenmentApp.DAL.Repositories
 
         }
 
-        public override async Task<SectionEntity> GetById(int id, CancellationToken ct)
+        public override async Task<SectionEntity?> GetById(int id, CancellationToken ct)
         {
             var section = await _context.Sections
                 .Include(s => s.Chapters)
                 .FirstOrDefaultAsync(s => s.Id == id, ct);
-            if (section != null)
-            {
-                return section;
-            }
-
-            throw new KeyNotFoundException();
+            return section;
         }
     }
 }

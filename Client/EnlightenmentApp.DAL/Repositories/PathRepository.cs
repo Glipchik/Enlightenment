@@ -34,7 +34,7 @@ namespace EnlightenmentApp.DAL.Repositories
             throw new ArgumentNullException();
         }
 
-        public override async Task<PathEntity> GetById(int id, CancellationToken ct)
+        public override async Task<PathEntity?> GetById(int id, CancellationToken ct)
         {
             var path = await _context.Paths
                 .Include(p => p.Modules)

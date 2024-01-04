@@ -12,7 +12,7 @@ namespace EnlightenmentApp.BLL.Services
         where TMapToEntity : BaseEntity
     {
         protected readonly IGenericRepository<TMapToEntity> _repository;
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
 
         public GenericService(IGenericRepository<TMapToEntity> repository, IMapper mapper)
         {
@@ -39,9 +39,9 @@ namespace EnlightenmentApp.BLL.Services
 
         public virtual async Task<TItem> Add(TItem item, CancellationToken ct)
         {
-            var entity = await _repository.Add(_mapper.Map<TMapToEntity>(item), ct);
-            if (entity != null)
+            if (item != null)
             {
+                var entity = await _repository.Add(_mapper.Map<TMapToEntity>(item), ct);
                 var result = _mapper.Map<TItem>(entity);
                 return result;
             }
@@ -51,19 +51,11 @@ namespace EnlightenmentApp.BLL.Services
 
         public virtual async Task<TItem> Delete(int id, CancellationToken ct)
         {
-            TItem result;
-            TMapToEntity? entity;
-            try
+            var itemExists = await _repository.EntityExists(id, ct);
+            if (itemExists)
             {
-                entity = await _repository.Delete(id, ct);
-            }
-            catch
-            {
-                throw new KeyNotFoundException();
-            }
-            if (entity != null)
-            {
-                result = _mapper.Map<TItem>(entity);
+                var entity = await _repository.Delete(id, ct);
+                var result = _mapper.Map<TItem>(entity);
                 return result;
             }
 
@@ -72,10 +64,11 @@ namespace EnlightenmentApp.BLL.Services
 
         public virtual async Task<TItem> Update(TItem item, CancellationToken ct)
         {
-            if (await _repository.EntityExists(_mapper.Map<TMapToEntity>(item), ct))
+            var entity = _mapper.Map<TMapToEntity>(item);
+            var itemExists = await _repository.EntityExists(entity, ct);
+            if (itemExists)
             {
-                var entity = await _repository.Update(_mapper.Map<TMapToEntity>(item), ct);
-                var result = _mapper.Map<TItem>(entity);
+                var result = _mapper.Map<TItem>(await _repository.Update(entity, ct));
                 return result;
             }
 

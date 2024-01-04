@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EnlightenmentApp.DAL.DI;
+using EnlightenmentApp.BLL.Interfaces.Services;
+using EnlightenmentApp.BLL.Services;
 
 namespace EnlightenmentApp.BLL.DI
 {
@@ -9,6 +11,12 @@ namespace EnlightenmentApp.BLL.DI
         public static void AddBusinessLogic(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterDALServices(configuration);
+            services.AddScoped<IChapterService, ChapterService>();
+            services.AddScoped<ISectionService, SectionService>();
+            services.AddScoped<IModuleService, ModuleService>();
+            services.AddScoped<IPathService, PathService>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<IModuleReviewService, ModuleReviewService>();
         }
     }
 }

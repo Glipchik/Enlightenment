@@ -13,52 +13,39 @@ namespace EnlightenmentApp.DAL.Repositories
 
         }
 
-        public override async Task<ModuleEntity> GetById(int id, CancellationToken ct)
+        public override async Task<ModuleEntity?> GetById(int id, CancellationToken ct)
         {
             var module = await _context.Modules
                 .Include(m => m.Sections)
                 .FirstOrDefaultAsync(m => m.Id == id, ct);
-            if (module != null)
-            {
-                return module;
-            }
+            return module;
 
-            throw new KeyNotFoundException();
         }
 
         public override async Task<ModuleEntity> Add(ModuleEntity moduleEntity, CancellationToken ct)
         {
-            if (moduleEntity != null)
+            if (!moduleEntity.Tags.IsNullOrEmpty())
             {
-                if (!moduleEntity.Tags.IsNullOrEmpty())
-                {
-                    _context.Tags.AddRange(moduleEntity.Tags);
-                }
-
-                await _context.Modules.AddAsync(moduleEntity, ct);
-                await _context.SaveChangesAsync(ct);
-                return moduleEntity;
+                _context.Tags.AddRange(moduleEntity.Tags);
             }
 
-            throw new ArgumentNullException();
+            await _context.Modules.AddAsync(moduleEntity, ct);
+            await _context.SaveChangesAsync(ct);
+            return moduleEntity;
         }
 
         public override async Task<ModuleEntity> Update(ModuleEntity moduleEntity, CancellationToken ct)
         {
-            if (await EntityExists(moduleEntity, ct))
-            {
-                var dbModuleEntity = _context.Modules
-                .Include(p => p.Tags)
-                .First(p => p.Id == moduleEntity.Id);
-                SetTagsDiff(moduleEntity, dbModuleEntity);
+            var dbModuleEntity = _context.Modules
+            .Include(p => p.Tags)
+            .First(p => p.Id == moduleEntity.Id);
+            SetTagsDiff(moduleEntity, dbModuleEntity);
 
-                dbModuleEntity.Tags.ToList().AddRange(moduleEntity.Tags);
-                await _context.SaveChangesAsync();
-                return moduleEntity;
-            }
-
-            throw new DbUpdateConcurrencyException();
+            dbModuleEntity.Tags.ToList().AddRange(moduleEntity.Tags);
+            await _context.SaveChangesAsync();
+            return moduleEntity;
         }
+
         private static void SetTagsDiff(ModuleEntity moduleEntity, ModuleEntity dbModuleEntity)
         {
             //remove unused tags

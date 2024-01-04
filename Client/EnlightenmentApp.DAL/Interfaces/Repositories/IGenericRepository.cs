@@ -10,5 +10,6 @@ namespace EnlightenmentApp.DAL.Interfaces.Repositories
         public Task<TEntity> Update(TEntity entity, CancellationToken ct);
         public Task<TEntity?> Delete(int id, CancellationToken ct);
         public Task<bool> EntityExists(TEntity entity, CancellationToken ct);
+        public Task<bool> EntityExists(int id, CancellationToken ct);
     }
 }

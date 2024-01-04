@@ -56,5 +56,11 @@ namespace EnlightenmentApp.DAL.Repositories
             var result = await _dbSet.AnyAsync(c => c.Id == entity.Id, ct);
             return result;
         }
+
+        public virtual async Task<bool> EntityExists(int id, CancellationToken ct)
+        {
+            var result = await _dbSet.AnyAsync(c => c.Id == id, ct);
+            return result;
+        }
     }
 }
