@@ -12,6 +12,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private IPathService _pathService;
         private IMapper _mapper;
+
         public PathController(IPathService pathService, IMapper mapper)
         {
             this._pathService = pathService;

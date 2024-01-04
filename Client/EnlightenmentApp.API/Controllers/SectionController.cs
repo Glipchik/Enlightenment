@@ -12,6 +12,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private ISectionService _sectionService;
         private IMapper _mapper;
+
         public SectionController(ISectionService sectionService, IMapper mapper)
         {
             this._sectionService = sectionService;

@@ -12,6 +12,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private ITagService _tagService;
         private IMapper _mapper;
+
         public TagController(ITagService tagService, IMapper mapper)
         {
             this._tagService = tagService;

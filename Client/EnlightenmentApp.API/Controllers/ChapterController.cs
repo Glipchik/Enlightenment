@@ -12,6 +12,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private IChapterService _chapterService;
         private IMapper _mapper;
+
         public ChapterController(IChapterService chapterService, IMapper mapper)
         {
             this._chapterService = chapterService;

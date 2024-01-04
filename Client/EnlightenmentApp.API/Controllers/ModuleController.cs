@@ -13,6 +13,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private IModuleService _moduleService;
         private IMapper _mapper;
+
         public ModuleController(IModuleService moduleService, IMapper mapper)
         {
             this._moduleService = moduleService;

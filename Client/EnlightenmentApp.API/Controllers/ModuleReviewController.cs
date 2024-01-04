@@ -12,6 +12,7 @@ namespace EnlightenmentApp.API.Controllers
     {
         private IModuleReviewService _moduleReviewService;
         private IMapper _mapper;
+
         public ModuleReviewController(IModuleReviewService moduleReviewService, IMapper mapper)
         {
             this._moduleReviewService = moduleReviewService;
