@@ -1,6 +1,6 @@
 ﻿namespace EnlightenmentApp.API.Models.Section
 {
-    public class SectionViewModel : BaseModel
+    public class SectionViewModel
     {
         #nullable disable
         public string Title { get; set; }

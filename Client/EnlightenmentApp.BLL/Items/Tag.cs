@@ -1,4 +1,4 @@
-﻿using EnlightenmentApp.BLL.Enums;
+﻿using EnlightenmentApp.Shared.Enums;
 
 namespace EnlightenmentApp.BLL.Entities
 {

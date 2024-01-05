@@ -1,4 +1,4 @@
-﻿using EnlightenmentApp.DAL.Enums;
+﻿using EnlightenmentApp.Shared.Enums;
 
 namespace EnlightenmentApp.DAL.Entities
 {

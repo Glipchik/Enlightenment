@@ -13,20 +13,15 @@ namespace EnlightenmentApp.API.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Section, SectionViewModel>();
-            CreateMap<SectionViewModel, Section>();
+            CreateMap<Section, SectionViewModel>().ReverseMap();
 
-            CreateMap<Module, ModuleViewModel>();
-            CreateMap<ModuleViewModel, Module>();
+            CreateMap<Module, ModuleViewModel>().ReverseMap();
 
-            CreateMap<Path, PathViewModel>();
-            CreateMap<PathViewModel, Path>();
+            CreateMap<Path, PathViewModel>().ReverseMap();
 
-            CreateMap<Tag, TagViewModel>();
-            CreateMap<TagViewModel, Tag>();
+            CreateMap<Tag, TagViewModel>().ReverseMap();
 
-            CreateMap<ModuleReview, ModuleReviewViewModel>();
-            CreateMap<ModuleReviewViewModel, ModuleReview>();
+            CreateMap<ModuleReview, ModuleReviewViewModel>().ReverseMap();
         }
     }
 }

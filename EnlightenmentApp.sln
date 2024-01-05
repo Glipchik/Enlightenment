@@ -2,15 +2,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34407.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.AppHost", "EnlightenmentApp.AppHost\EnlightenmentApp.AppHost.csproj", "{7693B4F5-789B-4341-94EA-0A6902D515A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.AppHost", "EnlightenmentApp.AppHost\EnlightenmentApp.AppHost.csproj", "{7693B4F5-789B-4341-94EA-0A6902D515A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.ServiceDefaults", "EnlightenmentApp.ServiceDefaults\EnlightenmentApp.ServiceDefaults.csproj", "{244DC31F-D99D-48C4-8409-0B0DDE74B721}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "Client\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.BLL", "Client\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{F6AB499E-4837-44D8-AE41-8779EA2694C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "Client\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{F6AB499E-4837-44D8-AE41-8779EA2694C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.DAL", "Client\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{47F511C6-7664-45AC-9563-65EAE13EDE2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "Client\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{47F511C6-7664-45AC-9563-65EAE13EDE2E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.Shared", "EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj", "{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +49,10 @@ Global
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EnlightenmentApp.API.Controllers
 {
-    [Route("api/ModuleReviews")]
+    [Route("api/module-reviews")]
     [ApiController]
     public class ModuleReviewController : ControllerBase
     {
-        private IModuleReviewService _moduleReviewService;
-        private IMapper _mapper;
+        private readonly IModuleReviewService _moduleReviewService;
+        private readonly IMapper _mapper;
 
         public ModuleReviewController(IModuleReviewService moduleReviewService, IMapper mapper)
         {
@@ -19,7 +19,12 @@ namespace EnlightenmentApp.API.Controllers
             this._mapper = mapper;
         }
 
-        // GET: api/<Controller>/5
+        /// <summary>
+        /// Finds a ModuleReview with specified <paramref name="id"/> in database.
+        /// </summary>
+        /// <param name="id">ModuleReview unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>ModuleReview found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
         public async Task<ModuleReviewViewModel?> GetModuleReview(int id, CancellationToken ct)
         {
@@ -27,7 +32,11 @@ namespace EnlightenmentApp.API.Controllers
             return moduleReview;
         }
 
-        // GET api/<Controller>
+        /// <summary>
+        /// Gets all ModuleReviews from database.
+        /// </summary>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>List of found moduleReviews.</returns>
         [HttpGet]
         public async Task<List<ModuleReviewViewModel>> GetModuleReviews(CancellationToken ct)
         {
@@ -35,7 +44,12 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<List<ModuleReviewViewModel>>(moduleReviews);
         }
 
-        // POST api/<Controller>
+        /// <summary>
+        /// Adds moduleReview to database.
+        /// </summary>
+        /// <param name="moduleReview"><see cref="ModuleReviewViewModel"/> to be added.</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Added ModuleReview.</returns>
         [HttpPost]
         public async Task<ModuleReviewViewModel> Post(ModuleReviewViewModel moduleReview, CancellationToken ct)
         {
@@ -43,7 +57,13 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<ModuleReviewViewModel>(result);
         }
 
-        // PUT api/<Controller>/5
+        /// <summary>
+        /// Updates a ModuleReview in database with specified id.
+        /// </summary>
+        /// <param name="id">ModuleReview unique identifier</param>
+        /// <param name="moduleReview">ModuleReview to be updated</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Updated ModuleReview</returns>
         [HttpPut("{id}")]
         public async Task<ModuleReviewViewModel> Put(int id, ModuleReviewViewModel moduleReview, CancellationToken ct)
         {
@@ -52,9 +72,14 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<ModuleReviewViewModel>(result);
         }
 
-        // DELETE api/<Controller>/5
+        /// <summary>
+        /// Deletes a ModuleReview in database with specified id.
+        /// </summary>
+        /// <param name="id">ModuleReview unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>ModuleReview deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<ModuleReviewViewModel> Delete(int id, CancellationToken ct)
+        public async Task<ModuleReviewViewModel?> Delete(int id, CancellationToken ct)
         {
             var result = await _moduleReviewService.Delete(id, ct);
             return _mapper.Map<ModuleReviewViewModel>(result);
