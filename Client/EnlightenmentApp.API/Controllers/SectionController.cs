@@ -19,15 +19,24 @@ namespace EnlightenmentApp.API.Controllers
             this._mapper = mapper;
         }
 
-        // GET: api/<Controller>/5
+        /// <summary>
+        /// Finds a Section with specified <paramref name="id"/> in database.
+        /// </summary>
+        /// <param name="id">Section unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Section found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
-        public async Task<SectionViewModel?> GetSection(int id, CancellationToken ct)
+        public async Task<SectionViewModel?> GetSection(int id, CancellationToken ct = default)
         {
             var section = _mapper.Map<SectionViewModel>(await _sectionService.GetById(id, ct));
             return section;
         }
 
-        // GET api/<Controller>
+        /// <summary>
+        /// Gets all Sections from database.
+        /// </summary>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>List of found sections.</returns>
         [HttpGet]
         public async Task<List<SectionViewModel>> GetSections(CancellationToken ct)
         {
@@ -35,7 +44,12 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<List<SectionViewModel>>(sections);
         }
 
-        // POST api/<Controller>
+        /// <summary>
+        /// Adds section to database.
+        /// </summary>
+        /// <param name="section"><see cref="SectionViewModel"/> to be added.</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Added Section.</returns>
         [HttpPost]
         public async Task<SectionViewModel> Post(SectionViewModel section, CancellationToken ct)
         {
@@ -43,7 +57,13 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<SectionViewModel>(result);
         }
 
-        // PUT api/<Controller>/5
+        /// <summary>
+        /// Updates a Section in database with specified id.
+        /// </summary>
+        /// <param name="id">Section unique identifier</param>
+        /// <param name="section">Section to be updated</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Updated Section</returns>
         [HttpPut("{id}")]
         public async Task<SectionViewModel> Put(int id, SectionViewModel section, CancellationToken ct)
         {
@@ -52,9 +72,14 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<SectionViewModel>(result);
         }
 
-        // DELETE api/<Controller>/5
+        /// <summary>
+        /// Deletes a Section in database with specified id.
+        /// </summary>
+        /// <param name="id">Section unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Section deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<SectionViewModel> Delete(int id, CancellationToken ct)
+        public async Task<SectionViewModel?> Delete(int id, CancellationToken ct)
         {
             var result = await _sectionService.Delete(id, ct);
             return _mapper.Map<SectionViewModel>(result);

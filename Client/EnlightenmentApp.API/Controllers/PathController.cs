@@ -19,7 +19,12 @@ namespace EnlightenmentApp.API.Controllers
             this._mapper = mapper;
         }
 
-        // GET: api/<Controller>/5
+        /// <summary>
+        /// Finds a Path with specified <paramref name="id"/> in database.
+        /// </summary>
+        /// <param name="id">Path unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Path found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
         public async Task<PathViewModel?> GetPath(int id, CancellationToken ct)
         {
@@ -27,7 +32,11 @@ namespace EnlightenmentApp.API.Controllers
             return path;
         }
 
-        // GET api/<Controller>
+        /// <summary>
+        /// Gets all Paths from database.
+        /// </summary>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>List of found paths.</returns>
         [HttpGet]
         public async Task<List<PathViewModel>> GetPaths(CancellationToken ct)
         {
@@ -35,7 +44,12 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<List<PathViewModel>>(paths);
         }
 
-        // POST api/<Controller>
+        /// <summary>
+        /// Adds path to database.
+        /// </summary>
+        /// <param name="path"><see cref="PathViewModel"/> to be added.</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Added Path.</returns>
         [HttpPost]
         public async Task<PathViewModel> Post(PathViewModel path, CancellationToken ct)
         {
@@ -43,7 +57,13 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<PathViewModel>(result);
         }
 
-        // PUT api/<Controller>/5
+        /// <summary>
+        /// Updates a Path in database with specified id.
+        /// </summary>
+        /// <param name="id">Path unique identifier</param>
+        /// <param name="path">Path to be updated</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Updated Path</returns>
         [HttpPut("{id}")]
         public async Task<PathViewModel> Put(int id, PathViewModel path, CancellationToken ct)
         {
@@ -52,9 +72,14 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<PathViewModel>(result);
         }
 
-        // DELETE api/<Controller>/5
+        /// <summary>
+        /// Deletes a Path in database with specified id.
+        /// </summary>
+        /// <param name="id">Path unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Path deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<PathViewModel> Delete(int id, CancellationToken ct)
+        public async Task<PathViewModel?> Delete(int id, CancellationToken ct)
         {
             var result = await _pathService.Delete(id, ct);
             return _mapper.Map<PathViewModel>(result);

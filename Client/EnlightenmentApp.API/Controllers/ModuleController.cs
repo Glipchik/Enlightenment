@@ -19,7 +19,12 @@ namespace EnlightenmentApp.API.Controllers
             this._mapper = mapper;
         }
 
-        // GET: api/<Controller>/5
+        /// <summary>
+        /// Finds a Module with specified <paramref name="id"/> in database.
+        /// </summary>
+        /// <param name="id">Module unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Module found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
         public async Task<ModuleViewModel?> GetModule(int id, CancellationToken ct)
         {
@@ -27,7 +32,11 @@ namespace EnlightenmentApp.API.Controllers
             return module;
         }
 
-        // GET api/<Controller>
+        /// <summary>
+        /// Gets all Modules from database.
+        /// </summary>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>List of found modules.</returns>
         [HttpGet]
         public async Task<List<ModuleViewModel>> GetModules(CancellationToken ct)
         {
@@ -35,7 +44,12 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<List<ModuleViewModel>>(modules);
         }
 
-        // POST api/<Controller>
+        /// <summary>
+        /// Adds module to database.
+        /// </summary>
+        /// <param name="module"><see cref="ModuleViewModel"/> to be added.</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Added Module.</returns>
         [HttpPost]
         public async Task<ModuleViewModel> Post(ModuleViewModel module, CancellationToken ct)
         {
@@ -43,7 +57,13 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<ModuleViewModel>(result);
         }
 
-        // PUT api/<Controller>/5
+        /// <summary>
+        /// Updates a Module in database with specified id.
+        /// </summary>
+        /// <param name="id">Module unique identifier</param>
+        /// <param name="module">Module to be updated</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Updated Module</returns>
         [HttpPut("{id}")]
         public async Task<ModuleViewModel> Put(int id, ModuleViewModel module, CancellationToken ct)
         {
@@ -52,9 +72,14 @@ namespace EnlightenmentApp.API.Controllers
             return _mapper.Map<ModuleViewModel>(result);
         }
 
-        // DELETE api/<Controller>/5
+        /// <summary>
+        /// Deletes a Module in database with specified id.
+        /// </summary>
+        /// <param name="id">Module unique identifier</param>
+        /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
+        /// <returns>Module deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<ModuleViewModel> Delete(int id, CancellationToken ct)
+        public async Task<ModuleViewModel?> Delete(int id, CancellationToken ct)
         {
             var result = await _moduleService.Delete(id, ct);
             return _mapper.Map<ModuleViewModel>(result);
