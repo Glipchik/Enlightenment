@@ -13,8 +13,8 @@ namespace EnlightenmentApp.API.Models.Module
         public float Rating { get; set; }
         public int Cost { get; set; }
         public string Summary { get; set; }
-        public ICollection<ModuleReviewViewModel> Reviews { get; set; }
-        public ICollection<TagViewModel> Tags { get; set; }
+        public ICollection<ModuleReviewViewModel>? Reviews { get; set; }
+        public ICollection<TagViewModel>? Tags { get; set; }
         public string ImageSrc { get; set; }
         public ICollection<SectionViewModel> Sections { get; set; }
         public bool IsCompleted { get; set; }

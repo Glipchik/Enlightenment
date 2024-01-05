@@ -10,7 +10,7 @@ namespace EnlightenmentApp.API.Models.Path
         public string Title { get; set; }
         public string Summary { get; set; }
         public int Cost { get; set; }
-        public ICollection<TagViewModel> Tags { get; set; }
+        public ICollection<TagViewModel>? Tags { get; set; }
         public ICollection<ModuleViewModel> Modules { get; set; }
     }
 }
