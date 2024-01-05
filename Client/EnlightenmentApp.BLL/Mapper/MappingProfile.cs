@@ -9,20 +9,15 @@ namespace EnlightenmentApp.BLL.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Section, SectionEntity>();
-            CreateMap<SectionEntity, Section>();
+            CreateMap<Section, SectionEntity>().ReverseMap();
 
-            CreateMap<Module, ModuleEntity>();
-            CreateMap<ModuleEntity, Module>();
+            CreateMap<Module, ModuleEntity>().ReverseMap();
 
-            CreateMap<Path, PathEntity>();
-            CreateMap<PathEntity, Path>();
+            CreateMap<Path, PathEntity>().ReverseMap();
 
-            CreateMap<Tag, TagEntity>();
-            CreateMap<TagEntity, Tag>();
+            CreateMap<Tag, TagEntity>().ReverseMap();
 
-            CreateMap<ModuleReview, ModuleReviewEntity>();
-            CreateMap<ModuleReviewEntity, ModuleReview>();
+            CreateMap<ModuleReview, ModuleReviewEntity>().ReverseMap();
         }
     }
 }
