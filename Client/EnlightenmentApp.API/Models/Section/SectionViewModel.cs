@@ -1,4 +1,6 @@
-﻿namespace EnlightenmentApp.API.Models.Section
+﻿using EnlightenmentApp.API.Models.Chapter;
+
+namespace EnlightenmentApp.API.Models.Section
 {
     public class SectionViewModel
     {
