@@ -11,7 +11,7 @@
         public ICollection<ModuleReview> Reviews { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public string ImageSrc { get; set; }
-        public ICollection<Path> Paths { get; }
+        public ICollection<Path> Paths { get; set; }
         public ICollection<Section> Sections { get; set; }
         public bool IsCompleted { get; set; }
     }
