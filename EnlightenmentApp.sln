@@ -6,22 +6,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.AppHost", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.ServiceDefaults", "EnlightenmentApp.ServiceDefaults\EnlightenmentApp.ServiceDefaults.csproj", "{244DC31F-D99D-48C4-8409-0B0DDE74B721}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "Client\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}"
-	ProjectSection(ProjectDependencies) = postProject
-		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.Shared", "EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj", "{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{926D4727-E626-447E-B2E8-A7EF8D018E96}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "Client\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{F6AB499E-4837-44D8-AE41-8779EA2694C2}"
-	ProjectSection(ProjectDependencies) = postProject
-		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "EnlightenmentApp.App\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{FADA617C-9DAC-445D-9CCC-8E8421639CD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "Client\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{47F511C6-7664-45AC-9563-65EAE13EDE2E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C} = {6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "EnlightenmentApp.App\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnlightenmentApp.Shared", "EnlightenmentApp.Shared\EnlightenmentApp.Shared.csproj", "{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "EnlightenmentApp.App\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,22 +33,22 @@ Global
 		{244DC31F-D99D-48C4-8409-0B0DDE74B721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244DC31F-D99D-48C4-8409-0B0DDE74B721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244DC31F-D99D-48C4-8409-0B0DDE74B721}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAEB00A3-F9F5-49D4-BD0E-B9E1B80D5328}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6AB499E-4837-44D8-AE41-8779EA2694C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6AB499E-4837-44D8-AE41-8779EA2694C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6AB499E-4837-44D8-AE41-8779EA2694C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6AB499E-4837-44D8-AE41-8779EA2694C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47F511C6-7664-45AC-9563-65EAE13EDE2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BBC0BF0-4FFE-4146-BFB3-A7920603D33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADA617C-9DAC-445D-9CCC-8E8421639CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADA617C-9DAC-445D-9CCC-8E8421639CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADA617C-9DAC-445D-9CCC-8E8421639CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADA617C-9DAC-445D-9CCC-8E8421639CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

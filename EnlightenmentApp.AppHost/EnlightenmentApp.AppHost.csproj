@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\EnlightenmentApp.API\EnlightenmentApp.API.csproj" />
+    <ProjectReference Include="..\EnlightenmentApp.App\EnlightenmentApp.API\EnlightenmentApp.API.csproj" />
   </ItemGroup>
 
 </Project>

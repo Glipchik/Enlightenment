@@ -1,5 +1,8 @@
 using EnlightenmentApp.API.Middleware;
+using EnlightenmentApp.API.Validators.Section;
 using EnlightenmentApp.BLL.DI;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +25,9 @@ builder.Services.AddSwaggerGen(op =>
 });
 
 builder.Services.AddAutoMapper(typeof(EnlightenmentApp.API.Mapper.MappingProfile).Assembly);
+builder.Services.AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssemblyContaining(typeof(SectionValidator));
 builder.Services.AddBusinessLogic(builder.Configuration);
 
 var app = builder.Build();

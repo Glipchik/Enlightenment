@@ -2,11 +2,11 @@
 {
     public enum TagType
     {
+        Custom,
         Tier,
         Difficulty,
         SectionsCount,
         ReturnAmount,
-        Timespan,
-        Custom
+        Timespan
     }
 }
