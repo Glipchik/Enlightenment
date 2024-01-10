@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EnlightenmentApp.App\EnlightenmentApp.API\EnlightenmentApp.API.csproj" />
+    <ProjectReference Include="..\EnlightenmentApp.ModuleService\EnlightenmentApp.API\EnlightenmentApp.API.csproj" />
   </ItemGroup>
 
 </Project>

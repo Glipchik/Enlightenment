@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "EnlightenmentApp.App\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{FADA617C-9DAC-445D-9CCC-8E8421639CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.API", "EnlightenmentApp.ModuleService\EnlightenmentApp.API\EnlightenmentApp.API.csproj", "{FADA617C-9DAC-445D-9CCC-8E8421639CD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "EnlightenmentApp.App\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.BLL", "EnlightenmentApp.ModuleService\EnlightenmentApp.BLL\EnlightenmentApp.BLL.csproj", "{2C920ABF-7A6F-4DE0-BF35-C11523C4E421}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "EnlightenmentApp.App\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnlightenmentApp.DAL", "EnlightenmentApp.ModuleService\EnlightenmentApp.DAL\EnlightenmentApp.DAL.csproj", "{CE8A13D2-5586-4D25-8EFC-D9A55200A7D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
