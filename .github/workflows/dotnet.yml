@@ -26,7 +26,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: sonarscan-dotnet
-      uses: highbyte/sonarscan-dotnet@2.3.0
+      uses: highbyte/sonarscan-dotnet@v2.3.0
       with:
         sonarProjectKey: Glipchik_Enlightenment
         sonarProjectName: Enlightenment
