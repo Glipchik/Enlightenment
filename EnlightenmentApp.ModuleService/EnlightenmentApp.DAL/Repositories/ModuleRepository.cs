@@ -13,13 +13,19 @@ namespace EnlightenmentApp.DAL.Repositories
 
         }
 
+        public override async Task<IEnumerable<ModuleEntity>> GetEntities(CancellationToken ct)
+        {
+            var modules = await _context.Modules.Include(m => m.Tags)
+                .AsNoTracking().ToListAsync(ct);
+            return modules;
+        }
+
         public override async Task<ModuleEntity?> GetById(int id, CancellationToken ct)
         {
             var module = await _context.Modules
                 .Include(m => m.Sections)
                 .FirstOrDefaultAsync(m => m.Id == id, ct);
             return module;
-
         }
 
         public override async Task<ModuleEntity> Add(ModuleEntity moduleEntity, CancellationToken ct)
@@ -42,7 +48,7 @@ namespace EnlightenmentApp.DAL.Repositories
             SetTagsDiff(moduleEntity, dbModuleEntity);
 
             dbModuleEntity.Tags.ToList().AddRange(moduleEntity.Tags);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(ct);
             return moduleEntity;
         }
 
