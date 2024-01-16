@@ -43,6 +43,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+app.UseCors(op => op.AllowAnyOrigin());
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
