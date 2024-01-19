@@ -1,4 +1,5 @@
-﻿using EnlightenmentApp.DAL.DataContext;
+﻿using AutoFixture;
+using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using EnlightenmentApp.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +9,20 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
     public class GenericRepositoryIntegrationTests
     {
         private readonly DbContextOptions<DatabaseContext> _options;
-        private GenericRepository<SectionEntity> _repository;
+        private GenericRepository<SectionEntity>? _repository;
+        private readonly Fixture _fixture;
+
 
         public GenericRepositoryIntegrationTests()
         {
             this._options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: "EnlightenmentApp" + DateTime.Now.ToFileTimeUtc())
                 .Options;
+
+            _fixture = new Fixture();
+
+            _fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
+            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
         [Fact]
@@ -22,11 +30,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         {
             await using DatabaseContext context = new(_options);
             this._repository = new (context);
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
 
             await context.Sections.AddAsync(section);
             await context.Sections.AddAsync(section);
@@ -40,11 +44,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task GetById_ValidId_ReturnsExpectedEntity()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -60,11 +60,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task Add_ValidEntity_ReturnsAddedEntity()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -76,11 +72,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task Update_ValidEntity_ReturnsUpdatedEntity()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -98,11 +90,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task Delete_ValidId_EntityDeleted()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -118,11 +106,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task EntityExists_ValidId_ReturnsTrue()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -137,11 +121,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task EntityExists_ValidEntity_ReturnsTrue()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -167,11 +147,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task GetById_InValidId_ReturnsNull()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -196,11 +172,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task Update_InValidEntity_Throws()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -215,11 +187,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task Delete_InValidId_Throws()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -233,11 +201,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task EntityExists_InValidId_ReturnsFalse()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -252,11 +216,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
         [Fact]
         public async Task EntityExists_InValidEntity_ReturnsFalse()
         {
-            var section = new SectionEntity
-            {
-                Content = "<td></td>",
-                Title = "Anonymous"
-            };
+            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 

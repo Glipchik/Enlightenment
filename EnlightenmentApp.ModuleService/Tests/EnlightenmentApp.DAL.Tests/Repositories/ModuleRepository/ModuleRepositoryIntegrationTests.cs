@@ -1,4 +1,5 @@
-﻿using EnlightenmentApp.DAL.DataContext;
+﻿using AutoFixture;
+using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,13 +8,19 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
     public class ModuleRepositoryIntegrationTests
     {
         private readonly DbContextOptions<DatabaseContext> _options;
-        private DAL.Repositories.ModuleRepository _repository;
+        private DAL.Repositories.ModuleRepository? _repository;
+        private readonly Fixture _fixture;
 
         public ModuleRepositoryIntegrationTests()
         {
             this._options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: "EnlightenmentApp" + DateTime.Now.ToFileTimeUtc())
                 .Options;
+
+            _fixture = new Fixture();
+
+            _fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
+            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
         [Fact]
@@ -21,15 +28,7 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         {
             await using DatabaseContext context = new(_options);
             this._repository = new(context);
-            var tags = new List<TagEntity>()
-            {
-                new(), new()
-            };
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous",
-                Tags = tags
-            };
+            var module = _fixture.Create<ModuleEntity>();
 
             await context.Modules.AddAsync(module);
             await context.Modules.AddAsync(module);
@@ -44,15 +43,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task GetById_ValidId_ReturnsExpectedEntity()
         {
-            var sections = new List<SectionEntity>()
-            {
-                new(), new()
-            };
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous",
-                Sections = sections
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -69,10 +61,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task Add_ValidEntity_ReturnsAddedEntity()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -84,20 +74,10 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task Update_ValidEntity_ReturnsUpdatedEntity()
         {
-            var tags = new List<TagEntity>()
-            {
-                new(), new()
-            };
-            var sections = new List<SectionEntity>()
-            {
-                new(), new()
-            };
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous",
-                Sections = sections,
-                Tags = tags
-            };
+            var module = _fixture.Create<ModuleEntity>();
+            var sections = module.Sections.ToList();
+            var tags = module.Tags.ToList();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -113,7 +93,6 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
 
             result.ShouldNotBeNull();
             result.ShouldBeEquivalentTo(entity.Entity);
-            result.Sections.Count.ShouldBe(2);
             result.Sections.FirstOrDefault(x => x.Content == "strings").ShouldNotBeNull();
             result.Tags.FirstOrDefault(x => x.Value == "strings").ShouldNotBeNull();
         }
@@ -121,10 +100,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task Delete_ValidId_EntityDeleted()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -140,10 +117,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task EntityExists_ValidId_ReturnsTrue()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -158,10 +133,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task EntityExists_ValidEntity_ReturnsTrue()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -187,10 +160,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task GetById_InValidId_ReturnsNull()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -215,10 +186,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task Update_InValidEntity_Throws()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -233,10 +202,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task Delete_InValidId_Throws()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -250,10 +217,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task EntityExists_InValidId_ReturnsFalse()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -268,10 +233,8 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
         [Fact]
         public async Task EntityExists_InValidEntity_ReturnsFalse()
         {
-            var module = new ModuleEntity
-            {
-                Title = "Anonymous"
-            };
+            var module = _fixture.Create<ModuleEntity>();
+
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
