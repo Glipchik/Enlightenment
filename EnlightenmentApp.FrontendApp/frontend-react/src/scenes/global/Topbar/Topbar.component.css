@@ -1,0 +1,7 @@
+.topbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  padding: 2px;
+}

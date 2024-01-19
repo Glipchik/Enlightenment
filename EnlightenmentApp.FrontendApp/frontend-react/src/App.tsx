@@ -1,9 +1,14 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Home from "./components/Home";
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Routes, Route, Navigate } from "react-router-dom";
+import NavMenu from "./scenes/global/NavMenu/NavMenu";
+import Topbar from "./scenes/global/Topbar/Topbar";
+import Dashboard from "./scenes/Dashboard/Dashboard";
+import Modules from "./scenes/Modules/Modules";
+import * as routes from "./constants/routes";
 
 function App() {
+  const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
