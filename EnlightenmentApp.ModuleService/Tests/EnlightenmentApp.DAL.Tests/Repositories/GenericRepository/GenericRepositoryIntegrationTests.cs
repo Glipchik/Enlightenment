@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using EnlightenmentApp.DAL.DataContext;
+﻿using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using EnlightenmentApp.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,27 +9,19 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
     {
         private readonly DbContextOptions<DatabaseContext> _options;
         private GenericRepository<SectionEntity>? _repository;
-        private readonly Fixture _fixture;
-
 
         public GenericRepositoryIntegrationTests()
         {
             this._options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: "EnlightenmentApp" + DateTime.Now.ToFileTimeUtc())
                 .Options;
-
-            _fixture = new Fixture();
-
-            _fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-        [Fact]
-        public async Task GetEntities_DatabasePopulated_ReturnsEntityCollection()
+        [Theory, AutoRepositoryData]
+        public async Task GetEntities_DatabasePopulated_ReturnsEntityCollection(SectionEntity section)
         {
             await using DatabaseContext context = new(_options);
             this._repository = new (context);
-            var section = _fixture.Create<SectionEntity>();
 
             await context.Sections.AddAsync(section);
             await context.Sections.AddAsync(section);
@@ -41,10 +32,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task GetById_ValidId_ReturnsExpectedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_ValidId_ReturnsExpectedEntity(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -57,10 +47,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task Add_ValidEntity_ReturnsAddedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Add_ValidEntity_ReturnsAddedEntity(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -69,10 +58,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task Update_ValidEntity_ReturnsUpdatedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Update_ValidEntity_ReturnsUpdatedEntity(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -87,10 +75,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task Delete_ValidId_EntityDeleted()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_ValidId_EntityDeleted(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -103,10 +90,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task EntityExists_ValidId_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidId_ReturnsTrue(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -118,10 +104,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeTrue();
         }
 
-        [Fact]
-        public async Task EntityExists_ValidEntity_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidEntity_ReturnsTrue(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -144,10 +129,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeEmpty();
         }
 
-        [Fact]
-        public async Task GetById_InValidId_ReturnsNull()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_InValidId_ReturnsNull(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -169,10 +153,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Update_InValidEntity_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Update_InValidEntity_Throws(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -184,10 +167,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Delete_InValidId_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_InValidId_Throws(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -198,10 +180,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidId_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidId_ReturnsFalse(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -213,10 +194,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.GenericRepository
             result.ShouldBeFalse();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidEntity_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidEntity_ReturnsFalse(SectionEntity section)
         {
-            var section = _fixture.Create<SectionEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 

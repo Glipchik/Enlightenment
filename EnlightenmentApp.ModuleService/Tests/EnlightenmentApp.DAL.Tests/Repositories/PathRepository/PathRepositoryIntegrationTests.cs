@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using EnlightenmentApp.DAL.DataContext;
+﻿using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,29 +8,19 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
     {
         private readonly DbContextOptions<DatabaseContext> _options;
         private DAL.Repositories.PathRepository? _repository;
-        private readonly Fixture _fixture;
-
 
         public PathRepositoryIntegrationTests()
         {
             this._options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: "EnlightenmentApp" + DateTime.Now.ToFileTimeUtc())
                 .Options;
-
-            _fixture = new Fixture();
-
-            _fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-        [Fact]
-        public async Task GetEntities_DatabasePopulated_ReturnsExpectedCollection()
+        [Theory, AutoRepositoryData]
+        public async Task GetEntities_DatabasePopulated_ReturnsExpectedCollection(PathEntity path)
         {
             await using DatabaseContext context = new(_options);
             this._repository = new(context);
-            
-            var path = _fixture.Create<PathEntity>();
-
 
             await context.Paths.AddAsync(path);
             await context.Paths.AddAsync(path);
@@ -43,11 +32,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ForEach(x => x.Tags.ShouldNotBeNull());
         }
 
-        [Fact]
-        public async Task GetById_ValidId_ReturnsExpectedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_ValidId_ReturnsExpectedEntity(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -61,11 +48,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task Add_ValidEntity_ReturnsAddedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Add_ValidEntity_ReturnsAddedEntity(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -74,10 +59,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task Update_ValidEntity_ReturnsUpdatedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Update_ValidEntity_ReturnsUpdatedEntity(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             var modules = path.Modules.ToList();
             var tags = path.Tags.ToList();
 
@@ -100,11 +84,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.Tags.FirstOrDefault(x => x.Value == "strings").ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task Delete_ValidId_EntityDeleted()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_ValidId_EntityDeleted(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -117,11 +99,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task EntityExists_ValidId_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidId_ReturnsTrue(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -133,10 +113,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldBeTrue();
         }
 
-        [Fact]
-        public async Task EntityExists_ValidEntity_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidEntity_ReturnsTrue(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -159,10 +138,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldBeEmpty();
         }
 
-        [Fact]
-        public async Task GetById_InValidId_ReturnsNull()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_InValidId_ReturnsNull(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -184,10 +162,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Update_InValidEntity_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Update_InValidEntity_Throws(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -199,10 +176,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Delete_InValidId_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_InValidId_Throws(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -213,10 +189,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidId_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidId_ReturnsFalse(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -228,10 +203,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.PathRepository
             result.ShouldBeFalse();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidEntity_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidEntity_ReturnsFalse(PathEntity path)
         {
-            var path = _fixture.Create<PathEntity>();
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 

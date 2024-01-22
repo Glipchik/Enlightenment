@@ -26,7 +26,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Module found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
-        public async Task<ModuleViewModel?> GetModule(int id, CancellationToken ct)
+        public async Task<ModuleViewModel?> GetModule(int id, CancellationToken ct = default)
         {
             var module = _mapper.Map<ModuleViewModel>(await _moduleService.GetById(id, ct));
             return module;
@@ -38,7 +38,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>List of found modules.</returns>
         [HttpGet]
-        public async Task<List<ModuleViewModel>> GetModules(CancellationToken ct)
+        public async Task<List<ModuleViewModel>> GetModules(CancellationToken ct = default)
         {
             var modules = await _moduleService.GetItems(ct);
             return _mapper.Map<List<ModuleViewModel>>(modules);
@@ -51,7 +51,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Added Module.</returns>
         [HttpPost]
-        public async Task<ModuleViewModel> Post(ModuleViewModel module, CancellationToken ct)
+        public async Task<ModuleViewModel> Post(ModuleViewModel module, CancellationToken ct = default)
         {
             var result = await _moduleService.Add(_mapper.Map<Module>(module), ct);
             return _mapper.Map<ModuleViewModel>(result);
@@ -65,7 +65,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Updated Module</returns>
         [HttpPut("{id}")]
-        public async Task<ModuleViewModel> Put(int id, ModuleViewModel module, CancellationToken ct)
+        public async Task<ModuleViewModel> Put(int id, ModuleViewModel module, CancellationToken ct = default)
         {
             module.Id = id;
             var result = await _moduleService.Update(_mapper.Map<Module>(module), ct);
@@ -79,7 +79,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Module deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<ModuleViewModel?> Delete(int id, CancellationToken ct)
+        public async Task<ModuleViewModel?> Delete(int id, CancellationToken ct = default)
         {
             var result = await _moduleService.Delete(id, ct);
             return _mapper.Map<ModuleViewModel>(result);

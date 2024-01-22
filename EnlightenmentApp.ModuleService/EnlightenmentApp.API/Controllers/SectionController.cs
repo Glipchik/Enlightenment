@@ -38,7 +38,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>List of found sections.</returns>
         [HttpGet]
-        public async Task<List<SectionViewModel>> GetSections(CancellationToken ct)
+        public async Task<List<SectionViewModel>> GetSections(CancellationToken ct = default)
         {
             var sections = await _sectionService.GetItems(ct);
             return _mapper.Map<List<SectionViewModel>>(sections);
@@ -51,7 +51,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Added Section.</returns>
         [HttpPost]
-        public async Task<SectionViewModel> Post(SectionViewModel section, CancellationToken ct)
+        public async Task<SectionViewModel> Post(SectionViewModel section, CancellationToken ct = default)
         {
             var result = await _sectionService.Add(_mapper.Map<Section>(section), ct);
             return _mapper.Map<SectionViewModel>(result);
@@ -65,7 +65,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Updated Section</returns>
         [HttpPut("{id}")]
-        public async Task<SectionViewModel> Put(int id, SectionViewModel section, CancellationToken ct)
+        public async Task<SectionViewModel> Put(int id, SectionViewModel section, CancellationToken ct = default)
         {
             section.Id = id;
             var result = await _sectionService.Update(_mapper.Map<Section>(section), ct);
@@ -79,7 +79,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Section deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<SectionViewModel?> Delete(int id, CancellationToken ct)
+        public async Task<SectionViewModel?> Delete(int id, CancellationToken ct = default)
         {
             var result = await _sectionService.Delete(id, ct);
             return _mapper.Map<SectionViewModel>(result);

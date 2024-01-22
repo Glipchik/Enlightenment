@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using EnlightenmentApp.DAL.DataContext;
+﻿using EnlightenmentApp.DAL.DataContext;
 using EnlightenmentApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,26 +8,19 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
     {
         private readonly DbContextOptions<DatabaseContext> _options;
         private DAL.Repositories.ModuleRepository? _repository;
-        private readonly Fixture _fixture;
 
         public ModuleRepositoryIntegrationTests()
         {
             this._options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: "EnlightenmentApp" + DateTime.Now.ToFileTimeUtc())
                 .Options;
-
-            _fixture = new Fixture();
-
-            _fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-        [Fact]
-        public async Task GetEntities_DatabasePopulated_ReturnsExpectedCollection()
+        [Theory, AutoRepositoryData]
+        public async Task GetEntities_DatabasePopulated_ReturnsExpectedCollection(ModuleEntity module)
         {
             await using DatabaseContext context = new(_options);
             this._repository = new(context);
-            var module = _fixture.Create<ModuleEntity>();
 
             await context.Modules.AddAsync(module);
             await context.Modules.AddAsync(module);
@@ -40,11 +32,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ForEach(x => x.Tags.ShouldNotBeNull());
         }
 
-        [Fact]
-        public async Task GetById_ValidId_ReturnsExpectedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_ValidId_ReturnsExpectedEntity(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -58,11 +48,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task Add_ValidEntity_ReturnsAddedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Add_ValidEntity_ReturnsAddedEntity(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -71,10 +59,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task Update_ValidEntity_ReturnsUpdatedEntity()
+        [Theory, AutoRepositoryData]
+        public async Task Update_ValidEntity_ReturnsUpdatedEntity(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
             var sections = module.Sections.ToList();
             var tags = module.Tags.ToList();
 
@@ -97,11 +84,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.Tags.FirstOrDefault(x => x.Value == "strings").ShouldNotBeNull();
         }
 
-        [Fact]
-        public async Task Delete_ValidId_EntityDeleted()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_ValidId_EntityDeleted(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -114,11 +99,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldBeEquivalentTo(entity.Entity);
         }
 
-        [Fact]
-        public async Task EntityExists_ValidId_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidId_ReturnsTrue(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -130,11 +113,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldBeTrue();
         }
 
-        [Fact]
-        public async Task EntityExists_ValidEntity_ReturnsTrue()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_ValidEntity_ReturnsTrue(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -157,11 +138,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldBeEmpty();
         }
 
-        [Fact]
-        public async Task GetById_InValidId_ReturnsNull()
+        [Theory, AutoRepositoryData]
+        public async Task GetById_InValidId_ReturnsNull(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -183,11 +162,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Update_InValidEntity_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Update_InValidEntity_Throws(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -199,11 +176,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task Delete_InValidId_Throws()
+        [Theory, AutoRepositoryData]
+        public async Task Delete_InValidId_Throws(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -214,11 +189,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
                 .ShouldThrowAsync<Exception>();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidId_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidId_ReturnsFalse(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
@@ -230,11 +203,9 @@ namespace EnlightenmentApp.DAL.Tests.Repositories.ModuleRepository
             result.ShouldBeFalse();
         }
 
-        [Fact]
-        public async Task EntityExists_InValidEntity_ReturnsFalse()
+        [Theory, AutoRepositoryData]
+        public async Task EntityExists_InValidEntity_ReturnsFalse(ModuleEntity module)
         {
-            var module = _fixture.Create<ModuleEntity>();
-
             await using DatabaseContext context = new(_options);
             _repository = new(context);
 
