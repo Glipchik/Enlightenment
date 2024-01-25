@@ -26,7 +26,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Tag found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
-        public async Task<TagViewModel?> GetTag(int id, CancellationToken ct)
+        public async Task<TagViewModel?> GetTag(int id, CancellationToken ct = default)
         {
             var tag = _mapper.Map<TagViewModel>(await _tagService.GetById(id, ct));
             return tag;
@@ -38,7 +38,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>List of found Tags.</returns>
         [HttpGet]
-        public async Task<List<TagViewModel>> GetTags(CancellationToken ct)
+        public async Task<List<TagViewModel>> GetTags(CancellationToken ct = default)
         {
             var tags = await _tagService.GetItems(ct);
             return _mapper.Map<List<TagViewModel>>(tags);
@@ -51,7 +51,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Added Tag.</returns>
         [HttpPost]
-        public async Task<TagViewModel> Post(TagViewModel tag, CancellationToken ct)
+        public async Task<TagViewModel> Post(TagViewModel tag, CancellationToken ct = default)
         {
             var result = await _tagService.Add(_mapper.Map<Tag>(tag), ct);
             return _mapper.Map<TagViewModel>(result);
@@ -65,7 +65,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Updated Tag</returns>
         [HttpPut("{id}")]
-        public async Task<TagViewModel> Put(int id, TagViewModel tag, CancellationToken ct)
+        public async Task<TagViewModel> Put(int id, TagViewModel tag, CancellationToken ct = default)
         {
             tag.Id = id;
             var result = await _tagService.Update(_mapper.Map<Tag>(tag), ct);
@@ -79,7 +79,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Tag deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<TagViewModel?> Delete(int id, CancellationToken ct)
+        public async Task<TagViewModel?> Delete(int id, CancellationToken ct = default)
         {
             var result = await _tagService.Delete(id, ct);
             return _mapper.Map<TagViewModel>(result);

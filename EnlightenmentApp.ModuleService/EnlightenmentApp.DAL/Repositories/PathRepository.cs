@@ -13,25 +13,28 @@ namespace EnlightenmentApp.DAL.Repositories
 
         }
 
+        public override async Task<IEnumerable<PathEntity>> GetEntities(CancellationToken ct)
+        {
+            var paths = await _context.Paths.Include(p => p.Tags)
+                .AsNoTracking().ToListAsync(ct);
+            return paths;
+        }
+
         public override async Task<PathEntity> Add(PathEntity pathEntity, CancellationToken ct)
         {
-            if (pathEntity != null)
+            if (!pathEntity.Modules.IsNullOrEmpty())
             {
-                if (!pathEntity.Modules.IsNullOrEmpty())
-                {
-                    _context.Modules.AddRange(pathEntity.Modules);
-                }
-
-                if (!pathEntity.Tags.IsNullOrEmpty())
-                {
-                    _context.Tags.AddRange(pathEntity.Tags);
-                }
-
-                await _context.Paths.AddAsync(pathEntity, ct);
-                await _context.SaveChangesAsync(ct);
-                return pathEntity;
+                _context.Modules.AddRange(pathEntity.Modules);
             }
-            throw new ArgumentNullException();
+
+            if (!pathEntity.Tags.IsNullOrEmpty())
+            {
+                _context.Tags.AddRange(pathEntity.Tags);
+            }
+
+            await _context.Paths.AddAsync(pathEntity, ct);
+            await _context.SaveChangesAsync(ct);
+            return pathEntity;
         }
 
         public override async Task<PathEntity?> GetById(int id, CancellationToken ct)
@@ -40,32 +43,22 @@ namespace EnlightenmentApp.DAL.Repositories
                 .Include(p => p.Modules)
                 .Include(p => p.Tags)
                 .FirstOrDefaultAsync(p => p.Id == id, ct);
-            if (path != null)
-            {
-                return path;
-            }
-
-            throw new KeyNotFoundException();
+            return path;
         }
 
         public override async Task<PathEntity> Update(PathEntity pathEntity, CancellationToken ct)
         {
-            if (await EntityExists(pathEntity, ct))
-            {
-                var dbPathEntity = _context.Paths
-                .Include(p => p.Modules)
-                .Include(p => p.Tags)
-                .First(p => p.Id == pathEntity.Id);
-                SetTagsDiff(pathEntity, dbPathEntity);
-                SetModulesDiff(pathEntity, dbPathEntity);
+            var dbPathEntity = _context.Paths
+            .Include(p => p.Modules)
+            .Include(p => p.Tags)
+            .First(p => p.Id == pathEntity.Id);
+            SetTagsDiff(pathEntity, dbPathEntity);
+            SetModulesDiff(pathEntity, dbPathEntity);
 
-                dbPathEntity.Tags.ToList().AddRange(pathEntity.Tags);
-                dbPathEntity.Modules.ToList().AddRange(pathEntity.Modules);
-                await _context.SaveChangesAsync();
-                return pathEntity;
-            }
-
-            throw new DbUpdateConcurrencyException();
+            dbPathEntity.Tags.ToList().AddRange(pathEntity.Tags);
+            dbPathEntity.Modules.ToList().AddRange(pathEntity.Modules);
+            await _context.SaveChangesAsync(ct);
+            return pathEntity;
         }
 
         private static void SetTagsDiff(PathEntity pathEntity, PathEntity dbPathEntity)

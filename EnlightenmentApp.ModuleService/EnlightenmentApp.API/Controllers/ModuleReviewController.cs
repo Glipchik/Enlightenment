@@ -26,7 +26,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>ModuleReview found or <see langword="null"/>.</returns>
         [HttpGet("{id}")]
-        public async Task<ModuleReviewViewModel?> GetModuleReview(int id, CancellationToken ct)
+        public async Task<ModuleReviewViewModel?> GetModuleReview(int id, CancellationToken ct = default)
         {
             var moduleReview = _mapper.Map<ModuleReviewViewModel>(await _moduleReviewService.GetById(id, ct));
             return moduleReview;
@@ -38,7 +38,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>List of found moduleReviews.</returns>
         [HttpGet]
-        public async Task<List<ModuleReviewViewModel>> GetModuleReviews(CancellationToken ct)
+        public async Task<List<ModuleReviewViewModel>> GetModuleReviews(CancellationToken ct = default)
         {
             var moduleReviews = await _moduleReviewService.GetItems(ct);
             return _mapper.Map<List<ModuleReviewViewModel>>(moduleReviews);
@@ -51,7 +51,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Added ModuleReview.</returns>
         [HttpPost]
-        public async Task<ModuleReviewViewModel> Post(ModuleReviewViewModel moduleReview, CancellationToken ct)
+        public async Task<ModuleReviewViewModel> Post(ModuleReviewViewModel moduleReview, CancellationToken ct = default)
         {
             var result = await _moduleReviewService.Add(_mapper.Map<ModuleReview>(moduleReview), ct);
             return _mapper.Map<ModuleReviewViewModel>(result);
@@ -65,7 +65,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>Updated ModuleReview</returns>
         [HttpPut("{id}")]
-        public async Task<ModuleReviewViewModel> Put(int id, ModuleReviewViewModel moduleReview, CancellationToken ct)
+        public async Task<ModuleReviewViewModel> Put(int id, ModuleReviewViewModel moduleReview, CancellationToken ct = default)
         {
             moduleReview.Id = id;
             var result = await _moduleReviewService.Update(_mapper.Map<ModuleReview>(moduleReview), ct);
@@ -79,7 +79,7 @@ namespace EnlightenmentApp.API.Controllers
         /// <param name="ct"><see cref="CancellationToken"/> used to cancel a task.</param>
         /// <returns>ModuleReview deleted or <see langword="null"/></returns>
         [HttpDelete("{id}")]
-        public async Task<ModuleReviewViewModel?> Delete(int id, CancellationToken ct)
+        public async Task<ModuleReviewViewModel?> Delete(int id, CancellationToken ct = default)
         {
             var result = await _moduleReviewService.Delete(id, ct);
             return _mapper.Map<ModuleReviewViewModel>(result);
