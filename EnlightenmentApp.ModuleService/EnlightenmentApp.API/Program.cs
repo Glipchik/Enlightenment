@@ -24,6 +24,8 @@ builder.Services.AddSwaggerGen(op =>
     op.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
 });
 
+builder.Services.AddCors();
+
 builder.Services.AddAutoMapper(typeof(EnlightenmentApp.API.Mapper.MappingProfile).Assembly);
 builder.Services.AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters()
@@ -39,11 +41,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(op => op.WithOrigins("http://localhost:3000"));
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(op => op.AllowAnyOrigin());
 
 app.UseHttpsRedirection();
 
