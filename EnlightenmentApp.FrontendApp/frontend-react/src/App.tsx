@@ -1,4 +1,4 @@
-import { ColorModeContext, useMode } from "./theme";
+import { ColorModeContext, useMode } from "./hooks/useMode";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavMenu from "./scenes/global/NavMenu/NavMenu";
