@@ -1,6 +1,4 @@
-﻿using EnlightenmentApp.API.Models.Chapter;
-
-namespace EnlightenmentApp.API.Models.Section
+﻿namespace EnlightenmentApp.API.Models.Section
 {
     public class SectionViewModel
     {
