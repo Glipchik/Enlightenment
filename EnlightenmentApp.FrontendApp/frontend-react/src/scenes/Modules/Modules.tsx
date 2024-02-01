@@ -29,7 +29,7 @@ export default function Modules() {
       setData(res);
       setLoaded(true);
     });
-  }, [setData]);
+  }, [setData, setLoaded, _moduleService]);
   return (
     <Box>
       <Box m="20px">
