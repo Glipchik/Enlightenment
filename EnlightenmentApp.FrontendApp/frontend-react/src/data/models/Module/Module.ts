@@ -2,7 +2,7 @@ import Tag from "../Tag/Tag";
 import Section from "../Section/Section";
 import ModuleReview from "../ModuleReview/ModuleReview";
 
-export interface Module {
+export default interface Module {
   id: number;
   title: string;
   author: string;
