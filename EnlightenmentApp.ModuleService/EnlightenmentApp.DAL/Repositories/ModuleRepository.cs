@@ -32,7 +32,7 @@ namespace EnlightenmentApp.DAL.Repositories
         {
             if (!moduleEntity.Tags.IsNullOrEmpty())
             {
-                _context.Tags.AddRange(moduleEntity.Tags);
+                _context.Tags.AttachRange(moduleEntity.Tags);
             }
 
             await _context.Modules.AddAsync(moduleEntity, ct);

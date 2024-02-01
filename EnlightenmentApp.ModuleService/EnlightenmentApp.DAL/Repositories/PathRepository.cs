@@ -24,12 +24,12 @@ namespace EnlightenmentApp.DAL.Repositories
         {
             if (!pathEntity.Modules.IsNullOrEmpty())
             {
-                _context.Modules.AddRange(pathEntity.Modules);
+                _context.Modules.AttachRange(pathEntity.Modules);
             }
 
             if (!pathEntity.Tags.IsNullOrEmpty())
             {
-                _context.Tags.AddRange(pathEntity.Tags);
+                _context.Tags.AttachRange(pathEntity.Tags);
             }
 
             await _context.Paths.AddAsync(pathEntity, ct);
