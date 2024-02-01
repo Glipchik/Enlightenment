@@ -28,6 +28,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        CI: false
         cache: 'yarn'
         cache-dependency-path: ./EnlightenmentApp.FrontendApp/frontend-react
     - run: yarn install
