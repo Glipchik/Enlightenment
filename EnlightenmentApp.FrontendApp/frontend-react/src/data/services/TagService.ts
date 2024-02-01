@@ -1,4 +1,4 @@
-import Tag from "../data/models/Tag/Tag";
+import Tag from "../models/Tag/Tag";
 import GenericService from "./GenericService";
 
 export default class TagService extends GenericService<Tag> {

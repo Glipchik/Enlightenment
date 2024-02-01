@@ -1,4 +1,4 @@
-import Path from "../data/models/Path/Path";
+import Path from "../models/Path/Path";
 import GenericService from "./GenericService";
 
 export default class PathService extends GenericService<Path> {

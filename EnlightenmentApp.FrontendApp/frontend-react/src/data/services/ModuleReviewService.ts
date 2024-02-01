@@ -1,4 +1,4 @@
-import ModuleReview from "../data/models/ModuleReview/ModuleReview";
+import ModuleReview from "../models/ModuleReview/ModuleReview";
 import GenericService from "./GenericService";
 
 export default class ModuleReviewService extends GenericService<ModuleReview> {

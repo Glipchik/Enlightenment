@@ -1,4 +1,4 @@
-import Section from "../data/models/Section/Section";
+import Section from "../models/Section/Section";
 import GenericService from "./GenericService";
 
 export default class SectionService extends GenericService<Section> {
