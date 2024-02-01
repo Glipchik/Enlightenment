@@ -398,11 +398,3 @@ yarn-error.log*
 
 # Built Visual Studio Code Extensions
 *.vsix
-
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
