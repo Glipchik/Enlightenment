@@ -2,7 +2,6 @@ import axios, { AxiosError } from "axios";
 
 export default class GenericService<T> {
   url: string = "";
-  constructor() {}
 
   async get(): Promise<T[]> {
     const { data } = await axios

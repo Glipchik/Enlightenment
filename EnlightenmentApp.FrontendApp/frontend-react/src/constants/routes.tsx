@@ -8,5 +8,5 @@ export const Modules = {
 };
 export const Paths = {
   main: "/paths",
-  alias: ["/Path"],
+  alias: ["/Paths"],
 };
