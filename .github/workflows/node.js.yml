@@ -13,7 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./EnlightenmentApp.FrontendApp/frontend-react
+        
     strategy:
       matrix:
         node-version: [21.x]
@@ -26,9 +29,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+        cache-dependency-path: ./EnlightenmentApp.FrontendApp/frontend-react
     - run: yarn install
-      working-directory: EnlightenmentApp.FrontendApp/frontend-react
     - run: yarn build
-      working-directory: EnlightenmentApp.FrontendApp/frontend-react
     - run: yarn test
-      working-directory: EnlightenmentApp.FrontendApp/frontend-react
