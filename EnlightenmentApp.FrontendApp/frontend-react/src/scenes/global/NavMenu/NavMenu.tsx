@@ -56,35 +56,36 @@ export default function NavMenu() {
   };
 
   return (
-    <Sidebar
-      rootStyles={{ border: 0 }}
-      backgroundColor={colors.primary[400]}
-      style={{
-        height: "100%",
-        top: "auto",
-        minWidth: isCollapsed ? "80px" : "200px",
-      }}
-      collapsed={isCollapsed}
-    >
-      <Menu menuItemStyles={menuItemsStyles}>
-        <MenuItem
-          style={{
-            margin: "10px 0 20px 0",
-            color: colors.grey[100],
-            cursor: "default",
-          }}
-        >
-          <Box className="collapse">
-            <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-              <MenuOutlined />
-            </IconButton>
-            {!isCollapsed ? <Typography variant="h4">Enlightenment</Typography> : undefined}
-          </Box>
-        </MenuItem>
-        <Item title="Dashboard" to={routes.Dashboard.main} icon={<DashboardOutlined />} />
-        <Item title="Modules" to={routes.Modules.main} icon={<BookOutlined />} />
-        <Item title="Paths" to={routes.Paths.main} icon={<BookmarksOutlined />} />
-      </Menu>
-    </Sidebar>
+    <Box className="sticky">
+      <Sidebar
+        rootStyles={{ border: 0 }}
+        backgroundColor={colors.primary[400]}
+        style={{
+          minWidth: isCollapsed ? "80px" : "200px",
+          height: "100%",
+        }}
+        collapsed={isCollapsed}
+      >
+        <Menu menuItemStyles={menuItemsStyles}>
+          <MenuItem
+            style={{
+              margin: "10px 0 20px 0",
+              color: colors.grey[100],
+              cursor: "default",
+            }}
+          >
+            <Box className="collapse">
+              <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                <MenuOutlined />
+              </IconButton>
+              {!isCollapsed ? <Typography variant="h4">Enlightenment</Typography> : undefined}
+            </Box>
+          </MenuItem>
+          <Item title="Dashboard" to={routes.Dashboard.main} icon={<DashboardOutlined />} />
+          <Item title="Modules" to={routes.Modules.main} icon={<BookOutlined />} />
+          <Item title="Paths" to={routes.Paths.main} icon={<BookmarksOutlined />} />
+        </Menu>
+      </Sidebar>
+    </Box>
   );
 }

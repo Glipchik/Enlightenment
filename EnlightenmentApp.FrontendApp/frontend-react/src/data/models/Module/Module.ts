@@ -2,16 +2,16 @@ import Tag from "../Tag/Tag";
 import Section from "../Section/Section";
 import ModuleReview from "../ModuleReview/ModuleReview";
 
-export interface Module {
-  id: number;
-  title: string;
-  author: string;
-  rating: number;
-  cost: number;
-  summary: string;
-  reviews: ModuleReview[] | null;
-  tags: Tag[] | null;
-  imageSrc: string;
-  sections: Section[];
-  isCompleted: boolean;
+export default class Module {
+  id: number = 0;
+  title: string = "";
+  author: string = "";
+  rating: number = 0;
+  cost: number = 0;
+  summary: string = "";
+  reviews: ModuleReview[] = [];
+  tags: Tag[] = [];
+  imageSrc: string = "";
+  sections: Section[] = [];
+  isCompleted: boolean = false;
 }

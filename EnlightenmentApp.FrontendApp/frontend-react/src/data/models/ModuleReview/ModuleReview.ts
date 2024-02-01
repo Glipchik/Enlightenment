@@ -1,7 +1,7 @@
-export default interface ModuleReview {
-  id: number;
-  userName: string;
-  rating: number;
-  reviewText: string;
-  moduleId: number;
+export default class ModuleReview {
+  id: number = 0;
+  userName: string = "";
+  rating: number = 0;
+  reviewText: string = "";
+  moduleId: number = 0;
 }

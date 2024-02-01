@@ -5,9 +5,10 @@ body,
 #root,
 .app,
 .content {
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: "Source Sans 3", sans-serif;
+  transition: "all 0.5s linear";
 }
 
 .app {

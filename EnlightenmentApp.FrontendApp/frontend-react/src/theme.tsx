@@ -129,9 +129,13 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
         ? {
             primary: {
               main: colors.primary[500],
+              dark: colors.primary[100],
+              light: colors.primary[500],
             },
             secondary: {
               main: colors.greenAccent[500],
+              dark: colors.primary[100],
+              light: colors.primary[500],
             },
             neutral: {
               dark: colors.grey[700],
