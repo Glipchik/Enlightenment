@@ -22,8 +22,13 @@ function App() {
               {routes.Dashboard.alias.map((path, index) => (
                 <Route
                   path={path}
+                  key={`dasboard_${index + 1}`}
                   element={
-                    <Navigate to={routes.Dashboard.main} key={`dasboard_${index + 1}`} replace />
+                    <Navigate
+                      to={routes.Dashboard.main}
+                      key={`dasboard_${index + 1}_nav`}
+                      replace
+                    />
                   }
                 />
               ))}
@@ -31,8 +36,9 @@ function App() {
               {routes.Modules.alias.map((path, index) => (
                 <Route
                   path={path}
+                  key={`modules_${index + 1}`}
                   element={
-                    <Navigate to={routes.Modules.main} key={`modules_${index + 1}`} replace />
+                    <Navigate to={routes.Modules.main} key={`modules_${index + 1}_nav`} replace />
                   }
                 />
               ))}
